@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <title>Anime Info Client</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Anime Info Client</h1>
+        <div class="row">
+            <div class="col-sm-3"><select class="form-control sel-cours"></select></div>
+            <div class="col-sm-9"><select class="form-control sel-anime"></select></div>
+        </div>
+        <h2>入力フォーム</h2>
+        <form class="form-horizontal form-anime">
+            <div class="form-group">
+                <label for="animeId" class="col-sm-2 control-label">id</label>
+                <div class="col-sm-10">
+                    <input id="animeId" type="text" class="form-control" readonly="readonly">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="animeTitle" class="col-sm-2 control-label">タイトル</label>
+                <div class="col-sm-10">
+                    <input id="animeTitle" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="animePublicTitle" class="col-sm-2 control-label">公式URL</label>
+                <div class="col-sm-10">
+                    <input id="animePublicTitle" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="animeTwitterAccount" class="col-sm-2 control-label">Twitterアカウント</label>
+                <div class="col-sm-10">
+                    <input id="animeTwitterAccount" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="animeHashtag0" class="col-sm-2 control-label">ハッシュタグ1</label>
+                <div class="col-sm-10">
+                    <input id="animeHashtag0" type="text" class="form-control">
+                </div>
+                <label for="animeHashtag1" class="col-sm-2 control-label">ハッシュタグ2</label>
+                <div class="col-sm-10">
+                    <input id="animeHashtag1" type="text" class="form-control">
+                </div>
+                <label for="animeHashtag2" class="col-sm-2 control-label">ハッシュタグ3</label>
+                <div class="col-sm-10">
+                    <input id="animeHashtag2" type="text" class="form-control">
+                </div>   
+            </div>
+            <div class="form-group">
+                <label for="animeShortTitle0" class="col-sm-2 control-label">別名1</label>
+                <div class="col-sm-10">
+                    <input id="animeShortTitle0" type="text" class="form-control">
+                </div>
+                <label for="animeShortTitle1" class="col-sm-2 control-label">別名2</label>
+                <div class="col-sm-10">
+                    <input id="animeShortTitle1" type="text" class="form-control">
+                </div>
+                <label for="animeShortTitle2" class="col-sm-2 control-label">別名3</label>
+                <div class="col-sm-10">
+                    <input id="animeShortTitle2" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="animeSequel" class="col-sm-2 control-label">期</label>
+                <div class="col-sm-10">
+                    <input id="animeSequel" type="number" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="animeSex1" class="col-sm-2 control-label">ターゲット</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="animeSex" id="animeSex1" value="1">男
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="animeSex" id="animeSex2" value="2">女
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 btn-group" role="group">
+                    <button type="button" class="btn btn-default">Create</button>
+                    <button type="submit" class="btn btn-default" onsubmit="return false;">Update</button>
+                    <button type="submit" class="btn btn-default" onsubmit="return false;">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="gapiUtils.js"></script>
+    <script src="app.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+</body>
+</html>
