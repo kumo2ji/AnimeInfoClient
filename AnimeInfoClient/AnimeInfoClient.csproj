@@ -22,6 +22,9 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\jasmine-jquery\jasmine-jquery.js" />
+    <Content Include="GapiSpecRunner.html" />
+    <Content Include="spec\javascripts\fixtures\indexFixture.html" />
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="index.html" />
@@ -37,14 +40,24 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="AnimeForm.ts" />
+    <TypeScriptCompile Include="PeriodSelect.ts" />
+    <TypeScriptCompile Include="SelectUtils.ts" />
+    <TypeScriptCompile Include="spec\javascripts\AnimeFormSpec.ts" />
+    <TypeScriptCompile Include="AnimeSelect.ts" />
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="gapiUtils.ts" />
-    <TypeScriptCompile Include="gapiUtilsSpec.ts" />
+    <TypeScriptCompile Include="AnimeInfoGapi.ts" />
+    <TypeScriptCompile Include="spec\javascripts\AnimeInfoGapiSpec.ts" />
+    <TypeScriptCompile Include="LocalStorage.ts" />
     <TypeScriptCompile Include="Scripts\typings\gapi\gapi.animeinfo.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\gapi\gapi.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jasmine-jquery\jasmine-jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jasmine\jasmine.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
+    <TypeScriptCompile Include="spec\javascripts\AnimeSelectSpec.ts" />
+    <TypeScriptCompile Include="spec\javascripts\PeriodSelectSpec.ts" />
+    <TypeScriptCompile Include="utils.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

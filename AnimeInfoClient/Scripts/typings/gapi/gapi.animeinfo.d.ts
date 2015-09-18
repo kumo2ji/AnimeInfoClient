@@ -10,7 +10,13 @@ declare namespace gapi.client {
         namespace get {
             export function anime(): HttpRequest<Response<AnimeInfo>>
             export function anime(request: GetAnimeInfoRequest): HttpRequest<Response<AnimeInfo>>
-            export function cours(): HttpRequest<Response<CoursObject>>
+            export function period(): HttpRequest<Response<Period>>
+        }
+        namespace put {
+            export function anime(request: PostAnimeInfoRequest): HttpRequest<Response<AnimeInfo>>
+        }
+        namespace erase {
+            export function anime(request: IdRequest): HttpRequest<BooleanResponse>
         }
         export interface Response<T> {
             items: Array<T>
@@ -25,16 +31,27 @@ declare namespace gapi.client {
             sex?: string
             twitterAccount?: string
             twitterHashTags?: Array<string>
+            periodId?: string
         }
-        export interface CoursObject {
+        export interface Period {
             id?: string
             year?: string
-            cours?: string
+            season?: string
         }
         export interface GetAnimeInfoRequest {
-            coursObject?: CoursObject
+            period?: Period
             limit?: number
             cursor?: string
+        }
+        export interface PostAnimeInfoRequest {
+            items?: Array<AnimeInfo>
+        }
+        export interface IdRequest {
+            ids?: Array<number>
+        }
+        export interface BooleanResponse {
+            value?: boolean,
+            message?: string
         }
     }
 }
