@@ -6,8 +6,7 @@
             text: text
         })
     }
-    export function build(selector: string, pairs: Array<utils.KeyValuePair<String, String>>,
-        onchange: () => void = null): JQuery {
+    export function build(selector: string, pairs: Array<utils.KeyValuePair<String, String>>): JQuery {
         var select = $(selector)
         select.children().remove()
         _.each(pairs, (pair) => {
@@ -17,10 +16,6 @@
             })
             select.append(option)
         })
-        if (_.isNull(onchange) === false) {
-            onchange()
-            select.change(onchange)
-        }
         return select
     }
     export function getOptions(selector: string) {
