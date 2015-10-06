@@ -3,93 +3,108 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8" />
+    <meta name=viewport content="width=device-width, initial-scale=1">
     <title>Anime Info Client</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 </head>
 <body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Anime Info Client</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">基本情報</a></li>
+                <li><a href="wikipedia.html">Wikipedia情報</a></li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
-        <h1>Anime Info Client</h1>
+        <h1>基本情報</h1>
         <div class="row div-anime-select">
-            <div class="col-sm-3"><select class="form-control sel-period"></select></div>
-            <div class="col-sm-9"><select class="form-control sel-anime"></select></div>
+            <div class="col-md-3"><select class="form-control sel-period"></select></div>
+            <div class="col-md-9"><select class="form-control sel-anime"></select></div>
         </div>
         <h2>入力フォーム</h2>
-        <form class="form-horizontal form-anime">
+        <form class="form-horizontal form-anime" onsubmit="return false;">
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10 btn-group" role="group">
+                <div class="col-md-offset-2 col-md-10 btn-group" role="group">
                     <button type="button" class="btn btn-default btn-new">New</button>
                     <button type="submit" class="btn btn-default btn-save" onsubmit="return false;">Save</button>
                     <button type="submit" class="btn btn-default btn-delete" onsubmit="return false;">Delete</button>
                 </div>
             </div>
             <div class="form-group">
-                <label for="animeId" class="col-sm-2 control-label">id</label>
-                <div class="col-sm-10">
+                <label for="animeId" class="col-md-2 control-label">id</label>
+                <div class="col-md-10">
                     <input id="animeId" type="text" class="form-control" readonly="readonly">
                 </div>
             </div>
             <div class="form-group">
-                <label for="animeTitle" class="col-sm-2 control-label">タイトル</label>
-                <div class="col-sm-10">
+                <label for="animeTitle" class="col-md-2 control-label">タイトル</label>
+                <div class="col-md-10">
                     <input id="animeTitle" type="text" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="animePeriod" class="col-sm-2 control-label">放映時期</label>
-                <div class="col-sm-10">
+                <label for="animePeriod" class="col-md-2 control-label">放映時期</label>
+                <div class="col-md-10">
                     <select id="animePeriod" class="form-control sel-period"></select>
                 </div>
             </div>
             <div class="form-group">
-                <label for="animePublicUrl" class="col-sm-2 control-label">公式URL</label>
-                <div class="col-sm-10">
+                <label for="animePublicUrl" class="col-md-2 control-label">公式URL</label>
+                <div class="col-md-10">
                     <input id="animePublicUrl" type="text" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="animeTwitterAccount" class="col-sm-2 control-label">Twitterアカウント</label>
-                <div class="col-sm-10">
+                <label for="animeTwitterAccount" class="col-md-2 control-label">Twitterアカウント</label>
+                <div class="col-md-10">
                     <input id="animeTwitterAccount" type="text" class="form-control">
                 </div>
             </div>
             <div class="form-group animeHashTags">
-                <label for="animeHashTag0" class="col-sm-2 control-label">ハッシュタグ1</label>
-                <div class="col-sm-10">
+                <label for="animeHashTag0" class="col-md-2 control-label">ハッシュタグ1</label>
+                <div class="col-md-10">
                     <input id="animeHashTag0" type="text" class="form-control">
                 </div>
-                <label for="animeHashTag1" class="col-sm-2 control-label">ハッシュタグ2</label>
-                <div class="col-sm-10">
+                <label for="animeHashTag1" class="col-md-2 control-label">ハッシュタグ2</label>
+                <div class="col-md-10">
                     <input id="animeHashTag1" type="text" class="form-control">
                 </div>
-                <label for="animeHashTag2" class="col-sm-2 control-label">ハッシュタグ3</label>
-                <div class="col-sm-10">
+                <label for="animeHashTag2" class="col-md-2 control-label">ハッシュタグ3</label>
+                <div class="col-md-10">
                     <input id="animeHashTag2" type="text" class="form-control">
                 </div>
             </div>
             <div class="form-group animeShortTitles">
-                <label for="animeShortTitle0" class="col-sm-2 control-label">別名1</label>
-                <div class="col-sm-10">
+                <label for="animeShortTitle0" class="col-md-2 control-label">別名1</label>
+                <div class="col-md-10">
                     <input id="animeShortTitle0" type="text" class="form-control">
                 </div>
-                <label for="animeShortTitle1" class="col-sm-2 control-label">別名2</label>
-                <div class="col-sm-10">
+                <label for="animeShortTitle1" class="col-md-2 control-label">別名2</label>
+                <div class="col-md-10">
                     <input id="animeShortTitle1" type="text" class="form-control">
                 </div>
-                <label for="animeShortTitle2" class="col-sm-2 control-label">別名3</label>
-                <div class="col-sm-10">
+                <label for="animeShortTitle2" class="col-md-2 control-label">別名3</label>
+                <div class="col-md-10">
                     <input id="animeShortTitle2" type="text" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label for="animeSequel" class="col-sm-2 control-label">期</label>
-                <div class="col-sm-10">
+                <label for="animeSequel" class="col-md-2 control-label">期</label>
+                <div class="col-md-10">
                     <input id="animeSequel" type="number" class="form-control">
                 </div>
             </div>
             <div class="form-group animeSex">
-                <label for="animeSex1" class="col-sm-2 control-label">ターゲット</label>
-                <div class="col-sm-10">
+                <label for="animeSex1" class="col-md-2 control-label">ターゲット</label>
+                <div class="col-md-10">
                     <label class="radio-inline">
                         <input type="radio" name="animeSex" id="animeSex0" value="0">男
                     </label>
@@ -99,25 +114,21 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10 btn-group" role="group">
+                <div class="col-md-offset-2 col-md-10 btn-group" role="group">
                     <button type="button" class="btn btn-default btn-new">New</button>
-                    <button type="submit" class="btn btn-default btn-save" onsubmit="return false;">Save</button>
-                    <button type="submit" class="btn btn-default btn-delete" onsubmit="return false;">Delete</button>
+                    <button type="submit" class="btn btn-default btn-save">Save</button>
+                    <button type="submit" class="btn btn-default btn-delete">Delete</button>
                 </div>
             </div>
         </form>
     </div>
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script src="https://apis.google.com/js/client.js"></script>
     <script src="AnimeInfoGapi.js"></script>
-    <script src="LocalStorage.js"></script>
     <script src="AnimeForm.js"></script>
     <script src="SelectUtils.js"></script>
     <script src="AnimeSelect.js"></script>
     <script src="PeriodSelect.js"></script>
+    <script src="AnimeSelectGroup.js"></script>
+    <script src="IndexApp.js"></script>
 </body>
 </html>

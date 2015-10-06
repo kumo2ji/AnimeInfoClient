@@ -7,7 +7,8 @@
 
 declare var init: Function
 
-namespace app {
+namespace IndexApp {
+    const selectGroup = new ui.AnimeSelectGroup()
     export function init() {
         utils.AnimeInfoGapi.loadGapi(() => {
             buildPeriodSelectDefault()
@@ -16,7 +17,7 @@ namespace app {
     }
 
     function buildPeriodSelectDefault() {
-        buildPeriodSelect((periodSelect) => {
+        selectGroup.buildPeriodSelect((periodSelect) => {
             periodSelect.change(buildAnimeSelectDefault)
             buildAnimeSelectDefault()
             ui.AnimeForm.buildPeriodSelect(ui.PeriodSelect.getOptions())
@@ -24,9 +25,11 @@ namespace app {
     }
 
     function buildAnimeSelectDefault() {
-        buildAnimeSelect((animeSelect) => {
-            animeSelect.change(buildAnimeForm)
-            buildAnimeForm()
+        selectGroup.buildAnimeSelect((animeSelect) => {
+            animeSelect.change(() => {
+                buildAnimeForm(selectGroup.getAnime())
+            })
+            buildAnimeForm(selectGroup.getAnime())
         })
     }
 
@@ -40,7 +43,7 @@ namespace app {
             utils.AnimeInfoGapi.putAnime(ui.AnimeForm.getInfo(), (resp) => {
                 var item = _.first(resp.items)
                 if (item.periodId == ui.PeriodSelect.getSelectedId()) {
-                    buildAnimeSelect((select) => {
+                    selectGroup.buildAnimeSelect((select) => {
                         select.change(buildAnimeForm)
                         select.val(item.id).change()
                     })
@@ -56,33 +59,9 @@ namespace app {
         })
     }
 
-    function buildPeriodSelect(callback: (select: JQuery) => void) {
-        utils.AnimeInfoGapi.getPeriod((resp) => {
-            var sorted = _.sortBy(resp.items, (item) => {
-                return -parseInt(item.year + item.season)
-            })
-            var select = ui.PeriodSelect.build(sorted)
-            callback(select)
-        })
-    }
-
-    function buildAnimeSelect(callback: (select: JQuery) => void) {
-        utils.AnimeInfoGapi.getAnime((resp) => {
-            var animeInfos = resp.items
-            utils.LocalStorage.setAnimeInfos(animeInfos)
-            var select = ui.AnimeSelect.build(animeInfos)
-            callback(select)
-            
-        }, { id: ui.PeriodSelect.getSelectedId() })
-    }
-
-    function buildAnimeForm() {
-        var animeInfos = utils.LocalStorage.getAnimeInfos()
-        var anime = _.find(animeInfos, (value) => {
-            return value.id === ui.AnimeSelect.getSelectedId()
-        })
+    function buildAnimeForm(anime: gapi.client.animeInfo.AnimeInfo) {
         ui.AnimeForm.build(anime)
     }
 }
 
-init = app.init
+init = IndexApp.init
