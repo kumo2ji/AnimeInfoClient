@@ -24,16 +24,23 @@ namespace WikipediaApp {
         })
     }
 
+    var wikiSearchInfos: Array<utils.Wikipedia.SearchInfo>
+
     function buildWikiTitleSelect(title: string) {
         utils.Wikipedia.search(title, (infos) => {
-            var select = ui.SelectUtils.build('.sel-wikiTitle', _.map(infos, (info) => {
+            wikiSearchInfos = infos
+            var select = ui.SelectUtils.build('.sel-wikiTitle', _.map(wikiSearchInfos, (info) => {
                 return { key: info.title, value: info.title }
             }))
-            select.change(() => {
-                buildSnippet(findSelectedWikiInfo(infos))
-            })
-            buildSnippet(findSelectedWikiInfo(infos))
+            select.change(onChange)
+            onChange()
         })
+    }
+
+    function onChange() {
+        var searchInfo = getSelectedSearchInfo()
+        buildSnippet(searchInfo)
+        buildInfoboxDiv(searchInfo.title)
     }
 
     function buildSnippet(info: utils.Wikipedia.SearchInfo) {
@@ -41,10 +48,33 @@ namespace WikipediaApp {
         $('.snippet').append(info.snippet)
     }
 
-    function findSelectedWikiInfo(infos: Array<utils.Wikipedia.SearchInfo>): utils.Wikipedia.SearchInfo {
-        return _.find(infos, (info) => {
+    function getSelectedSearchInfo(): utils.Wikipedia.SearchInfo {
+        return _.find(wikiSearchInfos, (info) => {
             return ui.SelectUtils.getSelectedValue('.sel-wikiTitle') == info.title
         })
+    }
+
+    function buildInfoboxDiv(title: string) {
+        $('div.infobox > ul').empty()
+        utils.Wikipedia.getWikiInfo(title, (info) => {
+            appendLi('.animeTitle', info.title)
+            appendLi('.director', info.director)
+            appendLi('.writer', info.writer)
+            appendLi('.music', info.music)
+            appendLi('.studio', info.studio)
+        })
+    }
+
+    function appendLi(selector: string, values: Array<string>): JQuery {
+        var ul = $(selector)
+        _.each(values, (value) => {
+            var li = $('<li></li>', {
+                text: value,
+                'class': 'list-group-item'
+            })
+            ul.append(li)
+        })
+        return ul
     }
 }
 

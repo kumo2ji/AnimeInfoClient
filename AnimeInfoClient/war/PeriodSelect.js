@@ -2,7 +2,7 @@ var ui;
 (function (ui) {
     var PeriodSelect;
     (function (PeriodSelect) {
-        var SEASON_NAMES = [null, '春', '夏', '秋', '冬'];
+        var SEASON_NAMES = [null, '冬', '春', '夏', '秋'];
         var PERIOD_SELECTOR = 'div.div-anime-select select.sel-period';
         function build(periods) {
             return ui.SelectUtils.build(PERIOD_SELECTOR, _.map(periods, function (item) {

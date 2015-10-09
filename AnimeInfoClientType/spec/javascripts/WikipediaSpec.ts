@@ -22,5 +22,23 @@
                 })
             })
         })
+        describe('getWikiInfo', () => {
+            var info: utils.Wikipedia.WikiInfo
+            beforeEach((done) => {
+                utils.Wikipedia.getWikiInfo('WORKING!!', (value) => {
+                    info = value
+                    done()
+                })
+            })
+            it('Wikipediaからアニメ情報を取得できる', () => {
+                expect(_.isEmpty(info)).toBeFalsy()
+                expect(info.pageTitle).toBe('WORKING!!')
+                expect(_.isEmpty(info.title)).toBeFalsy()
+                expect(_.isEmpty(info.director)).toBeFalsy()
+                expect(_.isEmpty(info.writer)).toBeFalsy()
+                expect(_.isEmpty(info.music)).toBeFalsy()
+                expect(_.isEmpty(info.studio)).toBeFalsy()
+            })
+        })
     })
 }

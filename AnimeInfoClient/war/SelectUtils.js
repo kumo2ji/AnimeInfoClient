@@ -12,7 +12,7 @@ var ui;
         SelectUtils.create = create;
         function build(selector, pairs) {
             var select = $(selector);
-            select.children().remove();
+            select.empty();
             _.each(pairs, function (pair) {
                 var option = $('<option></option>', {
                     value: pair.key,

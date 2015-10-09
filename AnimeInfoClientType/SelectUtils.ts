@@ -8,7 +8,7 @@
     }
     export function build(selector: string, pairs: Array<utils.KeyValuePair<String, String>>): JQuery {
         var select = $(selector)
-        select.children().remove()
+        select.empty()
         _.each(pairs, (pair) => {
             var option = $('<option></option>', {
                 value: pair.key,
