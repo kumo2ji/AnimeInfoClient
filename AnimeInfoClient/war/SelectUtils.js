@@ -13,6 +13,7 @@ var ui;
         function build(selector, pairs) {
             var select = $(selector);
             select.empty();
+            select.off();
             _.each(pairs, function (pair) {
                 var option = $('<option></option>', {
                     value: pair.key,

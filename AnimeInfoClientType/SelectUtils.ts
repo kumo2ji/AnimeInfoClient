@@ -9,6 +9,7 @@
     export function build(selector: string, pairs: Array<utils.KeyValuePair<String, String>>): JQuery {
         var select = $(selector)
         select.empty()
+        select.off()
         _.each(pairs, (pair) => {
             var option = $('<option></option>', {
                 value: pair.key,

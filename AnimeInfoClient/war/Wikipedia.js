@@ -27,25 +27,43 @@ var utils;
                 jsonpCallback: 'callback'
             });
             xhr.then(function (json) {
-                var pages = json.query.pages;
-                var page = _.first(_.values(pages));
-                var revision = _.first(page.revisions);
-                var content = revision['*'];
-                var tvAnimeInfobox = getTvAnimeInfoboxText(content);
-                success({
-                    pageTitle: page.title,
-                    title: split(getValue(tvAnimeInfobox, 'タイトル')),
-                    director: split(getValue(tvAnimeInfobox, '監督')),
-                    writer: split(getValue(tvAnimeInfobox, '脚本')),
-                    music: split(getValue(tvAnimeInfobox, '音楽')),
-                    studio: split(getValue(tvAnimeInfobox, 'アニメーション制作'))
-                });
+                var info = parse(json);
+                success(info);
             }, fail);
         }
         Wikipedia.getWikiInfo = getWikiInfo;
+        function parse(json) {
+            var page = getPage(json);
+            var content = getContent(page);
+            var tvAnimeInfobox = getTvAnimeInfoboxText(content);
+            return {
+                pageTitle: page.title,
+                title: getValueAndSplit(tvAnimeInfobox, 'タイトル'),
+                director: getValueAndSplit(tvAnimeInfobox, '監督'),
+                writer: getValueAndSplit(tvAnimeInfobox, '脚本'),
+                music: getValueAndSplit(tvAnimeInfobox, '音楽'),
+                studio: getValueAndSplit(tvAnimeInfobox, 'アニメーション制作')
+            };
+        }
+        function getPage(json) {
+            var pages = json.query.pages;
+            return _.first(_.values(pages));
+        }
+        function getContent(page) {
+            var revision = _.first(page.revisions);
+            return revision['*'];
+        }
+        function getValueAndSplit(text, key) {
+            var value = getValue(text, key);
+            return split(value);
+        }
         function getTvAnimeInfoboxText(input) {
             var regex = /\{\{Infobox animanga\/TVAnime([\s\S]+?)\}\}/;
-            return regex.exec(input)[1];
+            var execArray = regex.exec(input);
+            if (_.isNull(execArray)) {
+                return '';
+            }
+            return execArray[1];
         }
         function getValue(text, key) {
             var regex = new RegExp('^\\| *' + key + ' *= *(.+?)$', 'm');
